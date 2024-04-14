@@ -1,30 +1,30 @@
-import'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:equatable/equatable.dart';
+import 'package:tv_series/models/character_model.dart';
 
-import '../../models/character_model.dart';
-
-@immutable
-abstract class CharacterState extends Equatable{} //used to compare two variables or the variables that have the same value
-//data loading state
-class CharacterLoadingState extends CharacterState{ // this class is called and it returns null
+class CharacterState extends Equatable {
+  const CharacterState();
 
   @override
   List<Object?> get props => [];
 }
 
-//data loaded state
-class CharacterLoadedState extends CharacterState{ // this class is called and it returns null
-  CharacterLoadedState(this.characters);
-  final List<CharacterModel> characters;
-  @override
-  List<Object?> get props => [characters];
+class CharacterLoadingState extends CharacterState {}
 
+class CharacterLoadedState extends CharacterState {
+  final List<CharacterModel> characters;
+  final bool hasReachedMax; // Define the parameter here
+
+  const CharacterLoadedState(this.characters, {required this.hasReachedMax}); // Update the constructor accordingly
+
+  @override
+  List<Object?> get props => [characters, hasReachedMax];
 }
-//data error loading state
-class CharacterErrorState extends CharacterState{ // this class is called and it returns null
-  CharacterErrorState(this.error);
+
+class CharacterErrorState extends CharacterState {
   final String error;
+
+  const CharacterErrorState({required this.error});
+
   @override
   List<Object?> get props => [error];
-
 }

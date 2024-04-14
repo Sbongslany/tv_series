@@ -10,3 +10,10 @@ class LoadCharacterEvent extends CharacterEvent{
   @override
   List<Object?> get props => [];
 }
+
+class LoadNextPageEvent extends CharacterEvent {
+  const LoadNextPageEvent();
+
+  @override
+  List<Object?> get props => [];
+}
