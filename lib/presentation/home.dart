@@ -7,6 +7,8 @@ import 'package:tv_series/blocs/character/character_state.dart';
 import 'package:tv_series/models/character_model.dart';
 import 'package:tv_series/repository/repositories.dart';
 
+import 'details_screen.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -39,7 +41,9 @@ class _HomeState extends State<Home> {
                itemBuilder: (_,index){
                  return InkWell(
                    onTap: (){
-                     
+                     Navigator.of(context).push(
+                       MaterialPageRoute(builder: (context) => DetailsScreen(e : characterList[index]))
+                     );
                    },
                    child: Card(
                      color: Colors.blue,
