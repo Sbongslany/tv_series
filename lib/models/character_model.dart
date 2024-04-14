@@ -7,7 +7,7 @@ class CharacterModel {
   String? gender;
   Origin? origin;
   Origin? location;
-  String? image;
+ String? image;
   List<String>? episode;
   String? url;
   String? created;
@@ -21,26 +21,26 @@ class CharacterModel {
         this.gender,
         this.origin,
         this.location,
-        this.image,
+        required this.image,
         this.episode,
         this.url,
         this.created});
 
   CharacterModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
-    status = json['status'];
-    species = json['species'];
-    type = json['type'];
-    gender = json['gender'];
+    name = json['name'] ?? "";
+    status = json['status'] ?? "";
+    species = json['species'] ?? "";
+    type = json['type'] ?? "";
+    gender = json['gender'] ?? "";
     origin =
     json['origin'] != null ? new Origin.fromJson(json['origin']) : null;
     location =
     json['location'] != null ? new Origin.fromJson(json['location']) : null;
-    image = json['image'];
+    image = json['image'] ?? "";
     episode = json['episode'].cast<String>();
-    url = json['url'];
-    created = json['created'];
+    url = json['url'] ?? "";
+    created = json['created'] ?? "";
   }
 }
 
@@ -51,14 +51,7 @@ class Origin {
   Origin({this.name, this.url});
 
   Origin.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
-    return data;
+    name = json['name'] ?? "";
+    url = json['url'] ?? "";
   }
 }

@@ -10,6 +10,13 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   CharacterBloc(this._characterRepository) : super(CharacterLoadingState()){
     on<LoadCharacterEvent>((event, emit) async{
       emit(CharacterLoadingState()); //trigger state
+      try{
+        final character = await _characterRepository.getCharacters();
+        emit(CharacterLoadedState(character));
+      }catch(e){
+        emit(CharacterErrorState(e.toString()));
+      }
+
     });
   }
 }

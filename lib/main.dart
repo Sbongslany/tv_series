@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv_series/presentation/home.dart';
 import 'package:tv_series/repository/repositories.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: RepositoryProvider( //Loading the data and state once and making it available for child
         create: (context) => CharacterRepository(), //Injecting the character repository
-        child: Container(),
+        child: const Home(),
       ),
     );
   }
