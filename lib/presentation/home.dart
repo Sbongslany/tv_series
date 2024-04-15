@@ -6,7 +6,6 @@ import 'package:tv_series/blocs/character/character_event.dart';
 import 'package:tv_series/blocs/character/character_state.dart';
 import 'package:tv_series/models/character_model.dart';
 import 'package:tv_series/repository/repositories.dart';
-
 import 'details_screen.dart';
 
 class Home extends StatefulWidget {
