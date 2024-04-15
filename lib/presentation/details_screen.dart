@@ -16,7 +16,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Colors.deepOrange,
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('Character Details'),),
       body: Center(
         child: Column(
 

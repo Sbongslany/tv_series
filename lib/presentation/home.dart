@@ -32,7 +32,9 @@ class _HomeState extends State<Home> {
   }
 
   void _onScroll() {
+    // Check if the user has scrolled near the bottom
     if (_scrollController.position.extentAfter < 500) {
+      // Trigger event to load next page of characters
       context.read<CharacterBloc>().add(LoadNextPageEvent());
     }
   }
@@ -40,9 +42,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      // Providing the CharacterBloc to the widget tree
       create: (context) => CharacterBloc(
         RepositoryProvider.of<CharacterRepository>(context),
-      )..add(LoadCharacterEvent()),
+      )..add(LoadCharacterEvent()),// Triggering event to load initial characters
       child: Scaffold(
         backgroundColor: Colors.deepOrange,
         appBar: AppBar(
@@ -50,11 +53,13 @@ class _HomeState extends State<Home> {
         ),
         body: BlocBuilder<CharacterBloc, CharacterState>(
           builder: (context, state) {
+            // Show loading indicator while characters are loading
             if (state is CharacterLoadingState) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
+            // Render the loaded characters
             if (state is CharacterLoadedState) {
               List<CharacterModel> characterList = state.characters;
               return Padding(
@@ -63,6 +68,7 @@ class _HomeState extends State<Home> {
                   itemCount: characterList.length,
                   itemBuilder: (_, index) {
                     return InkWell(
+                      // Navigate to details screen when a character is tapped
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -78,7 +84,8 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
                             title: Text(characterList[index].name!),
-                            trailing: Image.network(characterList[index].image!),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                            leading: Image.network(characterList[index].image!),
                           ),
                         ),
                       ),
